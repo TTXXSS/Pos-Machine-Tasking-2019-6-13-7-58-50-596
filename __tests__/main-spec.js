@@ -1,6 +1,7 @@
 const main = require('../main');
 const printReceipt = main.printReceipt;
 const isItemExist= main.isItemExist;
+const getItemInformation=main.getItemInformation;
 const itemArray = ['0001', '0003', '0005', '0003'];
 const database = [{ "id": "0001", "name": "Coca Cola", "price": 3 },
 { "id": "0002", "name": "Diet Coke", "price": 4 },
@@ -14,8 +15,14 @@ const database = [{ "id": "0001", "name": "Coca Cola", "price": 3 },
 { "id": "0010", "name": "Fanta", "price": 12 }
 ];
 
-it('match successfully', () => {
-    expect(isItemExist(itemArray,database)).toEqual([true,true,true,true]);
+// it('verify item valid', () => {
+//     expect(isItemExist(itemArray,database)).toEqual([true,true,true,true]);
+// });
+
+it('get item information item id', () => {
+    expect(getItemInformation(itemArray,database)).toEqual(    [ { name: 'Coca Cola', price: 3, number: 1 },
+    { name: 'Pepsi-Cola', price: 5, number: 2 },
+    { name: 'Dr Pepper', price: 7, number: 1 } ]);
 });
 // it('match successfully', () => {
 //     expect(printReceipt(['0001', '0003', '0005', '0003'], [

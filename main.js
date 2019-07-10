@@ -12,27 +12,30 @@ function isItemExist(itemArray, database) {
     return itemExist;
 }
 
-function getReceipt(itemArray, database) {
+function getItemInformation(itemArray, database) {
 
     let receiptArray = [];
     var getReceipt = [];
     for (let k = 0; k < database.length; k++) {
-        var count = 0;
-        for (let j = 0; j < itemArray; j++) {
+        //console.log("684654654654");
+        for (let j = 0; j < itemArray.length; j++) {
+            //console.log("684654654654");
             if (itemArray[j] === database[k].id) {
-                count++;
-                receiptArray.push({ name: database[k].name, price: database[k].price, number: count });
+                receiptArray.push({ name: database[k].name, price: database[k].price, number: 1 });
             }
         }
 
     }
-    for (let j = 0; j < receiptArray.length; j++) {
-        if (getReceipt.indexOf(receiptArray[j].name) < 0) {
-            getReceipt.push(receiptArray[j]);
-        } else {
-            getReceipt[getReceipt.indexOf(receiptArray[j].name)].number++;
+   // console.log(receiptArray);
+    for(let i=0;i<receiptArray.length;i++)
+    for(let j=i+1;j<receiptArray.length;j++){
+        if(receiptArray[j].name===receiptArray[i].name){
+            //console.log(receiptArray[j].name);
+            receiptArray.splice(j,1);
+            receiptArray[i].number++;
         }
     }
+    console.log(receiptArray);
     return receiptArray;
 
 }
@@ -49,7 +52,7 @@ function printReceipt(itemArray, database) {
     if (tip === "error")
         return (tip);
     else {
-        receiptArray = getReceipt(itemArray, database);
+        receiptArray = getItemInformation(itemArray, database);
         for (let j = 0; j < receiptArray.length; j++) {
             receipt += (receiptArray[j].name + " " + receiptArray[j].price + " " + receiptArray[j].number + "\n");
         }
@@ -57,9 +60,9 @@ function printReceipt(itemArray, database) {
     }
 }
 
-function filterLengthByCondition(condition){
- 
+function filterLengthByCondition(condition) {
+
 }
 
 
-module.exports = { isItemExist, getReceipt, printReceipt};
+module.exports = { isItemExist, getItemInformation, printReceipt };
