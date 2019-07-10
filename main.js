@@ -44,7 +44,8 @@ function printReceipt(itemArray, database) {
     var itemExist = isItemExist(itemArray, database);
     var receiptArray = [];
     var tip;
-    var receipt = '';
+    var sum=0;
+    var receipt ="Receipts\n------------------------------------------------------------\n";
     for (let i = 0; i < itemExist.length; i++) {
         if (itemExist[i] === false)
             tip = "error";
@@ -54,9 +55,11 @@ function printReceipt(itemArray, database) {
     else {
         receiptArray = getItemInformation(itemArray, database);
         for (let j = 0; j < receiptArray.length; j++) {
+            sum+=(receiptArray[j].price*receiptArray[j].number);
             receipt += (receiptArray[j].name + " " + receiptArray[j].price + " " + receiptArray[j].number + "\n");
         }
-        return receiptArray;
+        receipt+="------------------------------------------------------------\nPrice: "+sum;
+        return receipt;
     }
 }
 

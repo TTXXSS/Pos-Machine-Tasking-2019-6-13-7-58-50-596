@@ -15,15 +15,20 @@ const database = [{ "id": "0001", "name": "Coca Cola", "price": 3 },
 { "id": "0010", "name": "Fanta", "price": 12 }
 ];
 
-// it('verify item valid', () => {
-//     expect(isItemExist(itemArray,database)).toEqual([true,true,true,true]);
-// });
-
-it('get item information item id', () => {
-    expect(getItemInformation(itemArray,database)).toEqual(    [ { name: 'Coca Cola', price: 3, number: 1 },
-    { name: 'Pepsi-Cola', price: 5, number: 2 },
-    { name: 'Dr Pepper', price: 7, number: 1 } ]);
+it('verify item valid', () => {
+    expect(printReceipt(itemArray,database)).toEqual("Receipts\n------------------------------------------------------------\n"+
+    "Coca Cola 3 1\n"+
+    "Pepsi-Cola 5 2\n"+
+    "Dr Pepper 7 1\n"+
+    "------------------------------------------------------------\n"+
+    "Price: 20");
 });
+
+// it('get item information item id', () => {
+//     expect(getItemInformation(itemArray,database)).toEqual(    [ { name: 'Coca Cola', price: 3, number: 1 },
+//     { name: 'Pepsi-Cola', price: 5, number: 2 },
+//     { name: 'Dr Pepper', price: 7, number: 1 } ]);
+// });
 // it('match successfully', () => {
 //     expect(printReceipt(['0001', '0003', '0005', '0003'], [
 //         { "id": "0001", "name": "Coca Cola", "price": 3 },
